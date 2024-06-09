@@ -2,7 +2,6 @@ package transformer.service;
 
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
-import transformer.TransformerApplication;
 import transformer.common.RequestElement;
 import transformer.parsers.Transformer;
 
@@ -25,9 +24,11 @@ public class TransformerService {
 
     public String goThroughTransformations(RequestElement requestElement) {
         List<Transformer> transformerList = requestElement.getTransformerList();
-        return transformerList.stream()
-                .reduce(requestElement.getValue(),
-                        (currentValue, transformer) -> transformer.operation(currentValue),
-                        (v1, v2) -> v2);  // Combiner function is not used in sequential streams
+        String result = requestElement.getValue();
+
+        for (Transformer transformer : transformerList) {
+            result = transformer.operation(result);
+        }
+        return result;
     }
 }

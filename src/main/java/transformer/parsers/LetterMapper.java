@@ -115,7 +115,7 @@ public class LetterMapper {
             greekToLatinMap.put('μ', "m");
             greekToLatinMap.put('ν', "n");
             greekToLatinMap.put('ξ', "x");
-            greekToLatinMap.put('ο', "o");
+            greekToLatinMap.put('ό', "o");
             greekToLatinMap.put('π', "p");
             greekToLatinMap.put('ρ', "r");
             greekToLatinMap.put('σ', "s");

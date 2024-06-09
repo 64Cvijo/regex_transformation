@@ -1,0 +1,135 @@
+You can run app and test with postman with request example (same example is used for integreation test):
+curl --location --request POST 'http://localhost:8080/transform' \
+--header 'Content-Type: application/json' \
+--data-raw '[
+  {
+    "value": "Grepling123",
+    "transformerList": [
+      {
+        "groupId": 1,
+        "transformerId": 1,
+        "regex": "\\d"
+      }
+    ]
+  },
+  {
+    "value": "Hello World",
+    "transformerList": [
+      {
+        "groupId": 2,
+        "transformerId": 1,
+        "regex": "\\s",
+        "replacement": "_"
+      }
+    ]
+  },
+  {
+    "value": "Hello World",
+    "transformerList": [
+      {
+        "groupId": 1,
+        "transformerId": 2,
+        "regex": "[aeiouAEIOU]"
+      }
+    ]
+  },
+  {
+    "value": "Привет, мир! Γειά σου Κόσμε!",
+    "transformerList": [
+      {
+        "groupId": 3,
+        "transformerId": 1
+      }
+    ]
+  },
+  {
+    "value": "Bla 123 Bla",
+    "transformerList": [
+      {
+        "groupId": 1,
+        "transformerId": 3,
+        "regex": "\\d"
+      },
+      {
+        "groupId": 2,
+        "transformerId": 2,
+        "regex": "\\s",
+        "replacement": "_"
+      }
+    ]
+  },
+  {
+    "value": "Hello World! Привет, мир! Γειά σου Κόσμε!",
+    "transformerList": [
+      {
+        "groupId": 1,
+        "transformerId": 4,
+        "regex": "[aeiouAEIOU]"
+      },
+      {
+        "groupId": 2,
+        "transformerId": 3,
+        "regex": "\\s",
+        "replacement": "_"
+      },
+      {
+        "groupId": 3,
+        "transformerId": 2
+      }
+    ]
+  },
+  {
+    "value": "Bla, Bla!",
+    "transformerList": [
+      {
+        "groupId": 1,
+        "transformerId": 5,
+        "regex": "[!,.]"
+      }
+    ]
+  },
+  {
+    "value": "Bla    Bla",
+    "transformerList": [
+      {
+        "groupId": 2,
+        "transformerId": 4,
+        "regex": "\\s+",
+        "replacement": " "
+      }
+    ]
+  },
+  {
+    "value": "Hello 123 World",
+    "transformerList": [
+      {
+        "groupId": 2,
+        "transformerId": 5,
+        "regex": "\\s",
+        "replacement": "-"
+      },
+      {
+        "groupId": 1,
+        "transformerId": 6,
+        "regex": "\\d"
+      }
+    ]
+  },
+  {
+    "value": "Hello, Привет!",
+    "transformerList": [
+      {
+        "groupId": 2,
+        "transformerId": 6,
+        "regex": "Hello",
+        "replacement": "Hi"
+      },
+      {
+        "groupId": 3,
+        "transformerId": 3,
+        "parameters": {}
+      }
+    ]
+  }
+]
+'
